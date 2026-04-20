@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#141e30,#243b55);
+}
+
+/* CALCULATOR */
+.calculator{
+  width:320px;
+  padding:20px;
+  border-radius:20px;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* DISPLAY */
+.display{
+  width:100%;
+  height:80px;
+  border:none;
+  border-radius:12px;
+  padding:15px;
+  font-size:28px;
+  text-align:right;
+  margin-bottom:15px;
+  background:rgba(0,0,0,0.4);
+  color:#fff;
+}
+
+/* BUTTON GRID */
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+button{
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+/* COLORS */
+.num{
+  background:#1e1e2f;
+  color:#fff;
+}
+
+.op{
+  background:#ff7a18;
+  color:#fff;
+}
+
+.equal{
+  background:#00c6ff;
+  color:#fff;
+  grid-column:span 2;
+}
+
+.clear{
+  background:#ff4b5c;
+  color:#fff;
+  grid-column:span 2;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+button:active{
+  transform:scale(0.9);
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" class="display" readonly>
+
+  <div class="buttons">
+    <button class="clear" onclick="clearDisplay()">AC</button>
+    <button class="op" onclick="append('/')">÷</button>
+
+    <button class="num" onclick="append('7')">7</button>
+    <button class="num" onclick="append('8')">8</button>
+    <button class="num" onclick="append('9')">9</button>
+    <button class="op" onclick="append('*')">×</button>
+
+    <button class="num" onclick="append('4')">4</button>
+    <button class="num" onclick="append('5')">5</button>
+    <button class="num" onclick="append('6')">6</button>
+    <button class="op" onclick="append('-')">−</button>
+
+    <button class="num" onclick="append('1')">1</button>
+    <button class="num" onclick="append('2')">2</button>
+    <button class="num" onclick="append('3')">3</button>
+    <button class="op" onclick="append('+')">+</button>
+
+    <button class="num" onclick="append('0')">0</button>
+    <button class="num" onclick="append('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+  </div>
+</div>
+
+<script>
+let display = document.getElementById("display");
+
+function append(val){
+  display.value += val;
+}
+
+function clearDisplay(){
+  display.value = "";
+}
+
+function calculate(){
+  try{
+    display.value = eval(display.value);
+  }catch{
+    display.value = "Error";
+  }
+}
+</script>
+
+</body>
+</html>
